@@ -1,3 +1,4 @@
+import uvicorn 
 from typing import Union
 from fastapi import FastAPI
 from utils.database import execute_query_json
@@ -25,6 +26,5 @@ async def get_all_users():
 
     return result_dict
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
-    return {"item_id": item_id, "q": q}
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000, log_level="info")
