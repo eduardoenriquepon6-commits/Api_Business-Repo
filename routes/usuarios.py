@@ -32,6 +32,6 @@ async def update_user_information( usuario_data: Usuarios , id: int ):
     return result
 
 @router.delete("/{id}", tags=["Usuarios"], status_code=status.HTTP_204_NO_CONTENT)
-async def delete_user_content( id: int ):
+async def delete_existing_user( id: int ):
     status: str =  await delete_user(id)
     return status

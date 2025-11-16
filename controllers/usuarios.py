@@ -158,4 +158,3 @@ async def update_user( usuario: Usuarios ) -> Usuarios:
             return []
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error en la base de datos: { str(e) }")
-
