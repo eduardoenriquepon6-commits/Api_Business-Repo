@@ -11,5 +11,6 @@ class Categoria(BaseModel):
     nombre_categoria: str = Field(
         description="Nombre de la categoría",
         max_length=100,
-        pattern=r"^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ' -]+$"
+        pattern=r"^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ' -]+$",
+        examples=["Suplementos", "Maquillaje", "Cosmeticos"]
     )
