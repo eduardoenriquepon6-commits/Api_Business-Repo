@@ -8,11 +8,13 @@ class Stock(BaseModel):
         description="ID del registro de stock"
     )
 
-    id_productos: int = Field(
-        description="ID del producto (FK)"
+    id_producto: Optional[int] = Field(
+        description="ID del producto (FK)",
+        default=None
     )
 
     cantidad_disponible: Optional[int] = Field(
         description="Unidades disponibles",
+        examples=[100, 250, 500],
         default=0
     )
