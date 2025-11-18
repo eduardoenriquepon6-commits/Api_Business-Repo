@@ -9,17 +9,14 @@ class OrdenPedido(BaseModel):
         description="ID de la orden"
     )
 
-    id_usuarios: int = Field(
-        description="ID del usuario (FK)"
+    id_usuario: Optional[int] = Field(
+        description="ID del usuario (FK)",
+        default=None
     )
 
     fecha_orden: Optional[datetime] = Field(
         default=None,
         description="Fecha de la orden"
-    )
-
-    total: float = Field(
-        description="Total de la orden"
     )
 
     estado_pago: Optional[str] = Field(
@@ -33,5 +30,6 @@ class OrdenPedido(BaseModel):
         default=None,
         description="Método de pago",
         max_length=50,
-        pattern=r"^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ ]+$"
+        pattern=r"^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ ]+$",
+        examples=["Tarjeta", "Efectivo", "Transferencia bancaria"]
     )

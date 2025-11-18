@@ -14,7 +14,8 @@ async def get_one_stck( id: int ) -> Stock:
     selectscript = """
         SELECT [id]
             ,[id_producto]
-            ,[cantidad_disponible]
+            ,[cantidad]
+            ,[precio_unitario]
         FROM [ventas_directas].[stock]
         WHERE id = ?
     """
@@ -38,7 +39,8 @@ async def get_all_stocks() -> list[Stock]:
     selectscript = """
         SELECT [id]
             ,[id_producto]
-            ,[cantidad_disponible]
+            ,[cantidad]
+            ,[precio_unitario]
         FROM [ventas_directas].[stock]
     """
 
@@ -53,13 +55,14 @@ async def get_all_stocks() -> list[Stock]:
 async def create_stock( stock: Stock ) -> Stock:
 
     sqlscript: str = """
-        INSERT INTO [ventas_directas].[stock] ([id_producto], [cantidad_disponible])
-        VALUES (?, ?);
+        INSERT INTO [ventas_directas].[stock] ([id_producto], [cantidad], [precio_unitario])
+        VALUES (?, ?, ?);
     """
 
     params = [
         stock.id_producto,
-        stock.cantidad_disponible
+        stock.cantidad,
+        stock.precio_unitario
     ]
 
     insert_result = None
@@ -71,7 +74,8 @@ async def create_stock( stock: Stock ) -> Stock:
     sqlfind: str = """
         SELECT [id]
             ,[id_producto]
-            ,[cantidad_disponible]
+            ,[cantidad]
+            ,[precio_unitario]
         FROM [ventas_directas].[stock]
         WHERE id_producto = ?;
     """
@@ -115,7 +119,8 @@ async def update_stock( stock: Stock ) -> Stock:
     sqlfind: str = """
         SELECT [id]
             ,[id_producto]
-            ,[cantidad_disponible]
+            ,[cantidad]
+            ,[precio_unitario]
         FROM [ventas_directas].[stock]
         WHERE id = ?;
     """
@@ -149,3 +154,4 @@ async def delete_stock( id: int ) -> str:
         return "DELETED"
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Database error: { str(e) }")
+    

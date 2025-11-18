@@ -12,11 +12,11 @@ class DetallePedido(BaseModel):
         description="ID de la orden (FK)"
     )
 
-    id_productos: int = Field(
+    id_producto: int = Field(
         description="ID del producto (FK)"
     )
 
-    cantidad: int = Field(
+    cantidad: Optional[int] = Field(
         description="Cantidad de productos comprados"
     )
 

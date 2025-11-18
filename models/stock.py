@@ -13,8 +13,16 @@ class Stock(BaseModel):
         default=None
     )
 
-    cantidad_disponible: Optional[int] = Field(
+    cantidad: Optional[int] = Field(
         description="Unidades disponibles",
-        examples=[100, 250, 500],
-        default=0
+        examples=[3, 250, 500],
+        default=None,
+        ge=0
+    )
+
+    precio_unitario: Optional[float] = Field(
+        description="Precio unitario del producto en stock",
+        examples=[1200, 700, 900],
+        default=None,
+        ge=0.0
     )

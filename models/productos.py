@@ -24,12 +24,6 @@ class Productos(BaseModel):
         default=None
     )
 
-    precio_unitario: Optional[float] = Field(
-        description="Precio unitario del producto",
-        examples=[1000.00, 975.00],
-        default = None
-    )
-
     activo: Optional[bool] = Field(
         default=True,
         description="Estado activo",

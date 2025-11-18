@@ -15,7 +15,6 @@ async def get_one_p( id: int ) -> Productos:
         SELECT [id]
             ,[nombre_producto]
             ,[descripcion_producto]
-            ,[precio_unitario]
             ,[activo]
             ,[id_categoria]
         FROM [ventas_directas].[productos]
@@ -43,7 +42,6 @@ async def get_all_p() -> list[Productos]:
         SELECT [id]
             ,[nombre_producto]
             ,[descripcion_producto]
-            ,[precio_unitario]
             ,[activo]
             ,[id_categoria]
         FROM [ventas_directas].[productos]
@@ -60,14 +58,13 @@ async def get_all_p() -> list[Productos]:
 async def create_product( producto: Productos ) -> Productos:
 
     sqlscript: str = """
-        INSERT INTO [ventas_directas].[productos] ([nombre_producto], [descripcion_producto], [precio_unitario], [activo], [id_categoria])
-        VALUES (?, ?, ?, ?, ?);
+        INSERT INTO [ventas_directas].[productos] ([nombre_producto], [descripcion_producto], [activo], [id_categoria])
+        VALUES (?, ?, ?, ?);
     """
 
     params = [
         producto.nombre_producto
         , producto.descripcion_producto
-        , producto.precio_unitario
         , producto.activo
         , producto.id_categoria
     ]
@@ -82,7 +79,6 @@ async def create_product( producto: Productos ) -> Productos:
         SELECT [id]
             ,[nombre_producto]
             ,[descripcion_producto]
-            ,[precio_unitario]
             ,[activo]
             ,[id_categoria]
         FROM [ventas_directas].[productos]
@@ -129,7 +125,6 @@ async def update_product( producto: Productos ) -> Productos:
         SELECT [id]
             ,[nombre_producto]
             ,[descripcion_producto]
-            ,[precio_unitario]
             ,[activo]
             ,[id_categoria]
         FROM [ventas_directas].[productos]

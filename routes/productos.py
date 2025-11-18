@@ -10,22 +10,22 @@ from controllers.productos import (
 
 router = APIRouter(prefix = "/productos")
 
-@router.get( "/" , tags=["Productos"])
+@router.get( "/" , tags=["Productos"], status_code=status.HTTP_200_OK)
 async def get_all_products():
     result = await get_all_p()
     return result
 
-@router.get("/{id}", tags=["Productos"])
+@router.get("/{id}", tags=["Productos"], status_code=status.HTTP_200_OK)
 async def get_one_product( id: int ):
     result: Productos = await get_one_p(id)
     return result
 
-@router.post( "/" , tags = ["Productos"])
+@router.post( "/" , tags = ["Productos"], status_code=status.HTTP_201_CREATED)
 async def create_new_product(producto_data: Productos):
     result = await create_product(producto_data)
     return result
 
-@router.put("/{id}", tags=["Productos"])
+@router.put("/{id}", tags=["Productos"], status_code=status.HTTP_200_OK)
 async def update_product_information( producto_data: Productos , id: int ):
     producto_data.id = id
     result = await update_product(producto_data)
