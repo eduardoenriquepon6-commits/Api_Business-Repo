@@ -25,7 +25,7 @@ async def create_new_user(usuario_data: Usuarios):
     result = await create_user(usuario_data)
     return result
 
-@router.put("/{id}", tags=["Usuarios"], status_code=status.HTTP_200_OK)
+@router.put("/{id}", tags=["Usuarios"], status_code=status.HTTP_201_CREATED)
 async def update_user_information( usuario_data: Usuarios , id: int ):
     usuario_data.id = id
     result = await update_user(usuario_data)

@@ -25,7 +25,7 @@ async def create_new_stock(stock_data: Stock):
     result = await create_stock(stock_data)
     return result
 
-@router.put("/{id}", tags=["Stock"], status_code=status.HTTP_200_OK)
+@router.put("/{id}", tags=["Stock"], status_code=status.HTTP_201_CREATED)
 async def update_stock_information( stock_data: Stock , id: int ):
     stock_data.id = id
     result = await update_stock(stock_data)

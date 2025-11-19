@@ -25,7 +25,7 @@ async def create_new_product(producto_data: Productos):
     result = await create_product(producto_data)
     return result
 
-@router.put("/{id}", tags=["Productos"], status_code=status.HTTP_200_OK)
+@router.put("/{id}", tags=["Productos"], status_code=status.HTTP_201_CREATED)
 async def update_product_information( producto_data: Productos , id: int ):
     producto_data.id = id
     result = await update_product(producto_data)

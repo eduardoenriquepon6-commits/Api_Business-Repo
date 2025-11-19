@@ -48,11 +48,11 @@ async def get_all() -> list[OrdenPedido]:
 
 async def create_orden(orden: OrdenPedido) -> OrdenPedido:
     insert_query = """
-        INSERT INTO ventas_directas.Orden_pedido (id_usuario, fecha_orden, estado_pago, metodo_pago)
+        INSERT INTO ventas_directas.Orden_pedido (id_usuario, estado_pago, metodo_pago)
         OUTPUT INSERTED.id
-        VALUES (?, ?, ?, ?);
+        VALUES (?, ?, ?);
     """
-    params = [orden.id_usuario, orden.fecha_orden, orden.estado_pago, orden.metodo_pago]
+    params = [orden.id_usuario, orden.estado_pago, orden.metodo_pago]
     try:
         insert_result = await execute_query_json(insert_query, params=params, needs_commit=True)
         inserted_id = json.loads(insert_result)[0]["id"]

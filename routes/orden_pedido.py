@@ -35,7 +35,7 @@ async def create_new_order(orden_data: OrdenPedido):
     result = await create_orden(orden_data)
     return result
 
-@router.put("/{id}", tags=["OrdenPedido"], status_code=status.HTTP_200_OK)
+@router.put("/{id}", tags=["OrdenPedido"], status_code=status.HTTP_201_CREATED)
 async def update_order(id: int, orden_data: OrdenPedido):
     orden_data.id = id
     result = await update_orden(orden_data)
@@ -66,7 +66,7 @@ async def add_order_detail(id: int, detalle_data: Stock):
     result = await add_detalle(id, detalle_data)
     return result
 
-@router.put("/{id}/detalle/{detalle_id}", tags=["DetallePedido"], status_code=status.HTTP_200_OK)
+@router.put("/{id}/detalle/{detalle_id}", tags=["DetallePedido"], status_code=status.HTTP_201_CREATED)
 async def update_order_detail(id: int, detalle_id: int, detalle_data: Stock):
     detalle_data.id = detalle_id
     result = await update_detalle_info(detalle_data, orden_id=id)
